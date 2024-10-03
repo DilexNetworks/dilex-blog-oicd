@@ -25,8 +25,12 @@ cdk deploy --context githubOrg=DilexNetworks --githubRepo=dilex-blog-oicd
 
 
 in the [GitHub Documentation][^1] and [here][^2]
+also [this][^open-id]
 
 
+
+[^open-id]: <https://openid.net/developers/how-connect-works/>
+"OpenID Connect"
 
 [^1]: <https://docs.github.com/en/actions/security-for-github-actions/security-hardening-your-deployments/about-security-hardening-with-openid-connect>
 "GitHub - Security Hardening with OpenID Connect"
