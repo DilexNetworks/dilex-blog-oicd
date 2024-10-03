@@ -32,7 +32,7 @@ bump_version:
 create_tag_release:
 	# Create a new tag on the main branch and push it
 	git tag $(FULL_TAG)
-    git push origin $(FULL_TAG)
+	git push origin $(FULL_TAG)
 
 	# Create a new GitHub release with the pushed tag
 	gh release create $(FULL_TAG) --title "Release $(FULL_TAG)" --notes "New release $(FULL_TAG)"
