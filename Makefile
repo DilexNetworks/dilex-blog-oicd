@@ -6,8 +6,13 @@ BUMP_PART = patch           # default bump2version part (patch, minor, major)
 
 DEV_REQUIREMENTS = ./requirements/development.txt
 
+# Get the version from the version file
+VERSION := $(shell cat $(VERSION_FILE))
+# Full tag name: Prefix + Version
+FULL_TAG = $(TAG_PREFIX)$(VERSION)
+
 # Default target to create a tag and a release
-all: bump_version create_tag create_release
+all: bump_version create_tag_release
 
 init:
 	pip install --upgrade pip
@@ -20,18 +25,21 @@ bump_version:
 	git pull origin $(BRANCH)
 	# Bump the version (patch by default)
 	bump2version $(BUMP_PART)
+	# Now update the VERSION variable
+	VERSION=$$(cat $(VERSION_FILE))
 
 # Target to create a Git tag
-create_tag:
-	# Get the new version from bump2version output
-	VERSION=$$(bump2version --dry-run --list $(BUMP_PART) | grep new_version | cut -d= -f2)
-	# Create a new tag on the main branch
-	gh release create $(TAG_PREFIX)$$VERSION --title "Release $$VERSION" --notes "New release $$VERSION"
+create_tag_release:
+	# Create a new tag on the main branch and push it
+	git tag $(FULL_TAG)
+    git push origin $(FULL_TAG)
+
+	# Create a new GitHub release with the pushed tag
+	gh release create $(FULL_TAG) --title "Release $(FULL_TAG)" --notes "New release $(FULL_TAG)"
 
 # Target to create a GitHub release
 create_release:
 	# Get the new version from the version.txt or similar file
-	VERSION=$$(cat $(VERSION_FILE))
 	# Push the tag and create a GitHub release
 	git push origin $(TAG_PREFIX)$$VERSION
 	gh release create $(TAG_PREFIX)$$VERSION --title "Release $$VERSION" --notes "New release $$VERSION"
