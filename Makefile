@@ -1,7 +1,6 @@
 # Variables
 VERSION_FILE = version.txt  # Or the file that manages the version
 BRANCH = main               # Specify your default branch (main, master, etc.)
-TAG_PREFIX = "v"            # Optional tag prefix
 BUMP_PART = patch           # default bump2version part (patch, minor, major)
 
 DEV_REQUIREMENTS = ./requirements/development.txt
@@ -11,6 +10,9 @@ VERSION := $(shell cat $(VERSION_FILE))
 
 # Default target to create a tag and a release
 all: bump_version create_tag_release
+
+check:
+	@echo "Full tag is $(FULL_TAG)"
 
 init:
 	pip install --upgrade pip
@@ -28,8 +30,8 @@ bump_version:
 
 # Target to create a Git tag
 create_tag_release:
-	FULL_TAG = $(TAG_PREFIX)$(VERSION)
 	# Create a new tag on the main branch and push it
+	FULL_TAG := v$(VERSION)
 	git tag $(FULL_TAG)
 	git push origin $(FULL_TAG)
 
