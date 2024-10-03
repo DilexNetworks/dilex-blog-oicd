@@ -8,8 +8,6 @@ DEV_REQUIREMENTS = ./requirements/development.txt
 
 # Get the version from the version file
 VERSION := $(shell cat $(VERSION_FILE))
-# Full tag name: Prefix + Version
-FULL_TAG = $(TAG_PREFIX)$(VERSION)
 
 # Default target to create a tag and a release
 all: bump_version create_tag_release
@@ -30,6 +28,7 @@ bump_version:
 
 # Target to create a Git tag
 create_tag_release:
+	FULL_TAG = $(TAG_PREFIX)$(VERSION)
 	# Create a new tag on the main branch and push it
 	git tag $(FULL_TAG)
 	git push origin $(FULL_TAG)
