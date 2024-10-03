@@ -10,6 +10,7 @@ DEV_REQUIREMENTS = ./requirements/development.txt
 all: bump_version create_tag create_release
 
 init:
+	pip install --upgrade pip
 	pip install -r $(DEV_REQUIREMENTS)
 
 # Target to bump version using bump2version
