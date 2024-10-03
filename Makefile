@@ -37,13 +37,6 @@ create_tag_release:
 	# Create a new GitHub release with the pushed tag
 	gh release create $(FULL_TAG) --title "Release $(FULL_TAG)" --notes "New release $(FULL_TAG)"
 
-# Target to create a GitHub release
-create_release:
-	# Get the new version from the version.txt or similar file
-	# Push the tag and create a GitHub release
-	git push origin $(TAG_PREFIX)$$VERSION
-	gh release create $(TAG_PREFIX)$$VERSION --title "Release $$VERSION" --notes "New release $$VERSION"
-
 # Utility to specify bump type (patch, minor, major)
 bump:
 	# Call make with the bump part (patch, minor, major)
