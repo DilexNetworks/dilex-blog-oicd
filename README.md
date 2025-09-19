@@ -14,6 +14,7 @@ Networks website:
 
 1) Install everything, configure access keys, cdk bootstrap your AWS account
 
+```
 mkdir infra
 cd infra
 cdk init --language typescript --app OpenId
@@ -23,3 +24,5 @@ cdk init --language typescript --app OpenId
 # edit open-id-stack.ts
 cdk synth
 cdk deploy --context githubOrg=DilexNetworks --githubRepo=dilex-blog-oicd
+```
+
