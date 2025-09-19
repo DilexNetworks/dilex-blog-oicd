@@ -19,10 +19,12 @@ mkdir infra
 cd infra
 cdk init --language typescript --app OpenId
 cdk bootstrap (wait for this to finish)
+```
 
-cdk init --language typescript --app OpenId
-# edit open-id-stack.ts
+Copy in an edit edit open-id-stack.ts
+
+```
 cdk synth
-cdk deploy --context githubOrg=DilexNetworks --githubRepo=dilex-blog-oicd
+cdk deploy --context githubOrg=<githubOrg> --githubRepo=<githubRepo>
 ```
 
