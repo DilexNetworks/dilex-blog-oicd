@@ -1,0 +1,12 @@
+{
+  "cdkAppPath": "./cdk.out",
+  "environment": "dev",
+  "githubOrg": "your-org",
+  "githubRepo": "your-repo",
+  "tools": {
+    "gh": "/opt/homebrew/bin/gh",
+    "aws": "/usr/local/bin/aws",
+    "jq": "/usr/bin/jq",
+    "cdk": "/opt/homebrew/bin/cdk"
+  }
+}
